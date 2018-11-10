@@ -4,7 +4,7 @@ from flask import Flask, make_response, jsonify, request
 from flask_restful import Resource, Api
 from skimage import io
 #import pyzbar.pyzbar as pyzbar
-
+from qrtools import QR
 
 app = Flask(__name__)
 api = Api(app)
