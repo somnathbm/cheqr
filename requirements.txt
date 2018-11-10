@@ -1,2 +1,6 @@
 Flask
+Flask-RESTful
+futures
 gunicorn
+pyzbar
+scikit-image
