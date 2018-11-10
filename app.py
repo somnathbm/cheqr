@@ -3,17 +3,17 @@ from __future__ import print_function
 from flask import Flask, make_response, jsonify, request
 from flask_restful import Resource, Api
 from skimage import io
-import pyzbar.pyzbar as pyzbar
+#import pyzbar.pyzbar as pyzbar
 
 
 app = Flask(__name__)
 api = Api(app)
 
-def decode(im) : 
+# def decode(im) : 
   # Find QR codes
-  decodedObjects = pyzbar.decode(im)
+  #decodedObjects = pyzbar.decode(im)
      
-  return decodedObjects
+  #return decodedObjects
 
 class myAPI(Resource):
     @api.representation('application/json')
@@ -26,10 +26,11 @@ class myAPI(Resource):
         try:
             im = io.imread(url_val)
             # Third, try to decode
-            decodedObjects = decode(im)
+            # decodedObjects = decode(im)
             # If decode fails, it returns an empty array
-            if(len(decodedObjects) > 0):
-                return make_response(jsonify(data=decodedObjects[0][0], url=url_val, tag_res=True), 200)
+            # if(len(decodedObjects) > 0):
+            #     return make_response(jsonify(data=decodedObjects[0][0], url=url_val, tag_res=True), 200)
+            # return make_response(jsonify(data=[], url=url_val, tag_res= False), 200)
             return make_response(jsonify(data=[], url=url_val, tag_res= False), 200)
         except:
             return make_response(jsonify(error='bad request'), 400)
