@@ -3,7 +3,7 @@ Flask-RESTful
 futures
 gunicorn
 pypng
-zbar
 pillow
 qrtools
+pyzbar
 scikit-image
