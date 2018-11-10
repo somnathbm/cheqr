@@ -2,6 +2,5 @@ Flask
 Flask-RESTful
 futures
 gunicorn
-zbar
 pyzbar
 scikit-image
