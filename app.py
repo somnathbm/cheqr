@@ -9,11 +9,12 @@ from qrtools import QR
 app = Flask(__name__)
 api = Api(app)
 
-# def decode(im) : 
+def decode(url) : 
   # Find QR codes
-  #decodedObjects = pyzbar.decode(im)
-     
-  #return decodedObjects
+  # decodedObjects = pyzbar.decode(im)
+  qrCode = QR(filename = url)
+  qrCode.decode()
+  return qrCode.data
 
 class myAPI(Resource):
     @api.representation('application/json')
@@ -24,14 +25,14 @@ class myAPI(Resource):
 
         # Second, read the resource in url
         try:
-            im = io.imread(url_val)
+            # im = io.imread(url_val)
             # Third, try to decode
-            # decodedObjects = decode(im)
+            decodedObjects = decode(url_val)
             # If decode fails, it returns an empty array
             # if(len(decodedObjects) > 0):
             #     return make_response(jsonify(data=decodedObjects[0][0], url=url_val, tag_res=True), 200)
             # return make_response(jsonify(data=[], url=url_val, tag_res= False), 200)
-            return make_response(jsonify(data=[], url=url_val, tag_res= False), 200)
+            return make_response(jsonify(data=decodedObjects, url=url_val, tag_res= False), 200)
         except:
             return make_response(jsonify(error='bad request'), 400)
     
