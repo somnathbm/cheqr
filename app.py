@@ -13,7 +13,8 @@ def decode(url) :
   # Find QR codes
   # decodedObjects = pyzbar.decode(im)
   qrCode = QR(filename = url)
-  qrCode.decode()
+  status = qrCode.decode()
+  print('decode result', qrCode)
   return qrCode.data
 
 class myAPI(Resource):
